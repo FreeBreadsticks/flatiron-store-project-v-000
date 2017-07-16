@@ -7,7 +7,8 @@ class Cart < ActiveRecord::Base
   def total
     cost = 0
     self.items.each do |item|
-      cost += item.price
+      # binding.pry
+      cost += item.price * item.line_items.first.quantity
     end
     cost
   end

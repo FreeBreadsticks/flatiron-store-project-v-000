@@ -1,11 +1,12 @@
 class CartsController < ApplicationController
   def show
     # binding.pry
-    @current_cart = current_user.current_cart
+    @cart = Cart.find(params[:id])
   end
 
   def checkout
-    # binding.pry
-    redirect_to cart_path(current_user.current_cart)
+    @cart = Cart.find(params[:id])
+    @cart.checkout
+    redirect_to cart_path(@cart)
   end
 end
